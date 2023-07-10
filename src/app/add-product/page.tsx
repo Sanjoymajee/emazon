@@ -1,26 +1,27 @@
 import { prisma } from "@/lib/db/prisma";
 import { redirect } from "next/navigation";
 
-async function addProduct(formData: FormData) {
-  "use server";
-  const name = formData.get("name") as string;
-  const price = formData.get("price") as string;
-  const description = formData.get("description") as string;
-  const imageUrl = formData.get("image") as string;
-  await prisma.product.create({
-    data: {
-      name,
-      price: Number(price),
-      description,
-      imageUrl,
-    },
-  });
-  redirect("/products");
-}
-
 export default function AddProduct() {
+  async function addProduct(formData: FormData) {
+    "use server";
+    const name = formData.get("name") as string;
+    const price = formData.get("price") as string;
+    const description = formData.get("description") as string;
+    const imageUrl = formData.get("image") as string;
+    if (!name || !price || !description || !imageUrl) redirect("/add-product");
+    if (!Number(price)) redirect("/add-product");
+    await prisma.product.create({
+      data: {
+        name,
+        price: Number(price),
+        description,
+        imageUrl,
+      },
+    });
+    redirect("/products");
+  }
   return (
-    <div className="rounded-md max-w-lg flex flex-col bg-gray-500 p-5 w-1/2 mx-auto my-5">
+    <div className="rounded-md min-w-[365px] max-w-2xl flex flex-col bg-gray-500 p-5 w-1/2 mx-auto my-5">
       <h1 className="text-3xl mb-4 text-gray-800">Add Product</h1>
       <form action={addProduct} className="flex flex-col">
         <label className="text-gray-800" htmlFor="name">
@@ -32,7 +33,7 @@ export default function AddProduct() {
           name="name"
           type="text"
           placeholder="Name"
-          className="input input-bordered input-primary w-full max-w-lg mb-2"
+          className="input input-bordered input-primary w-full max-w-2xl mb-2"
         />
         <label htmlFor="price" className="text-gray-800">
           Price
@@ -40,8 +41,8 @@ export default function AddProduct() {
         <input
           required
           placeholder="Price"
-          className="input input-bordered input-primary w-full max-w-lg mb-2"
-          type="number"
+          className="input input-bordered input-primary w-full max-w-2xl mb-2"
+          type="text"
           name="price"
           id="price"
         />
@@ -61,15 +62,12 @@ export default function AddProduct() {
         <input
           required
           placeholder="Image URL"
-          className="input input-bordered input-primary w-full max-w-lg mb-2"
-          type="text"
+          className="input input-bordered input-primary w-full max-w-2xl mb-2"
+          type="url"
           name="image"
           id="image"
         />
-        <button
-          className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg mt-2"
-          type="submit"
-        >
+        <button className="btn btn-xs sm:btn-sm md:btn-md mt-2" type="submit">
           Add Product
         </button>
       </form>
