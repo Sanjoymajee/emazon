@@ -5,6 +5,8 @@ import Image from "next/image";
 import { USDconversion } from "@/components/ProductCard";
 import { cache } from "react";
 import { Metadata } from "next";
+import AddToCartButton from "./AddToCartButton";
+import { increamentProductQuantity } from "./action";
 interface ProductPageProps {
   params: {
     productId: string;
@@ -29,6 +31,8 @@ export async function generateMetadata({
 }
 
 const getProduct = cache(async (productId: string) => {
+  // * Validate productId format
+  if (!/^[0-9a-fA-F]{24}$/.test(productId)) notFound();
   const product = await prisma.product.findUnique({
     where: { id: productId },
   });
@@ -54,7 +58,7 @@ export default async function ProductPage({
       <div className="card-body lg:w-1/2">
         <h2 className="card-title">{product.name}</h2>
         <p>{product.description}</p>
-        <div className="card-actions justify-between">
+        <div className="flex flex-col card-actions justify-between gap-5">
           <div className="flex gap-5">
             <div className="badge badge-accent ">
               {USDconversion(product.price)}
@@ -63,7 +67,10 @@ export default async function ProductPage({
               {USDconversion(product.price * 1.2)}
             </div>
           </div>
-          <button className="btn btn-primary">Add to Cart</button>
+          <AddToCartButton
+            productId={product.id}
+            increamentProductQuantity={increamentProductQuantity}
+          />
         </div>
       </div>
     </div>

@@ -65,9 +65,7 @@ export default function Home() {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 {user ? (
-                  <div className="w-10 rounded-full">
-                    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />{" "}
-                  </div>
+                  <div className="w-10 rounded-full"></div>
                 ) : (
                   <div className="bg-neutral-focus text-neutral-content rounded-full w-24">
                     <span className="text-3xl">E</span>
