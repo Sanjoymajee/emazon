@@ -1,15 +1,14 @@
 "use client";
 
 import { ShoopingCart } from "@/lib/db/cart";
-import { USDconversion } from "../components/ProductCard";
+import { USDconversion } from "@/components/ProductCard";
+import Link from "next/link";
 
 interface ShoppingCartIconProps {
   cart: ShoopingCart | null;
 }
 
 export default function ShoppingCartIcon({ cart }: ShoppingCartIconProps) {
-  const cartSize = cart ? cart.size : 0;
-  const subTotal = cart ? cart.subTotal : 0;
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -28,7 +27,9 @@ export default function ShoppingCartIcon({ cart }: ShoppingCartIconProps) {
               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
             />
           </svg>
-          <span className="badge badge-sm indicator-item">{cartSize}</span>
+          <span className="badge badge-sm indicator-item">
+            {cart?.size || 0}
+          </span>
         </div>
       </label>
       <div
@@ -36,10 +37,14 @@ export default function ShoppingCartIcon({ cart }: ShoppingCartIconProps) {
         className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
       >
         <div className="card-body bg-slate-800 rounded-xl">
-          <span className="font-bold text-lg">{cartSize} Items</span>
-          <span className="text-info">Subtotal: {USDconversion(subTotal)}</span>
+          <span className="font-bold text-lg">{cart?.size || 0} Items</span>
+          <span className="text-info">
+            Subtotal: {USDconversion(cart?.subTotal || 0)}
+          </span>
           <div className="card-actions">
-            <button className="btn btn-primary btn-block">View cart</button>
+            <Link href={"/cart"} className="btn btn-primary btn-block">
+              View cart
+            </Link>
           </div>
         </div>
       </div>
