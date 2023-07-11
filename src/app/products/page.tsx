@@ -14,7 +14,7 @@ export default async function Products() {
     },
   });
   return (
-    <div className="flex max-w-7xl mx-auto flex-col p-5">
+    <div className="flex max-w-7xl mx-auto flex-col lg:p-5">
       <h1 className="text-3xl font-bold mb-5">Products</h1>
       <div className="gap-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {products.map((product) => (

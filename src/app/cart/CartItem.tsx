@@ -21,7 +21,7 @@ export default function CartItem({ item }: CartItemProps) {
       </figure>
       <div className="card-body">
         <h2 className="card-title">{item.product.name}</h2>
-        <div className="card-actions justify-between gap-3">
+        <div className="card-actions justify-between gap-3 flex flex-col">
           <div className="flex gap-5">
             <div className="badge badge-accent ">
               {USDconversion(item.product.price)}
