@@ -45,9 +45,7 @@ export default async function Cart() {
             <button className="btn btn-accent mt-5">Order</button>
           </>
         ) : (
-          <h2 className="text-2xl font-bold mb-5 capitalize">
-            Your cart is empty
-          </h2>
+          <h2 className="text-2xl font-bold capitalize">Your cart is empty</h2>
         )}
       </div>
     </div>

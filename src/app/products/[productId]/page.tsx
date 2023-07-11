@@ -45,7 +45,7 @@ export default async function ProductPage({
 }: ProductPageProps) {
   const product: Product = await getProduct(productId);
   return (
-    <div className="card min-w-[365px] rounded-none m-0 lg:rounded-xl lg:card-side bg-neutral shadow-xl max-w-5xl lg:mx-auto lg:my-5">
+    <div className="card min-w-[365px] m-0 rounded-xl lg:card-side bg-neutral shadow-xl max-w-5xl lg:mx-auto lg:my-5">
       <figure className="lg:w-1/2 max-h-[600px]">
         <Image
           className="hover:scale-125 transition-all duration-500 ease-in-out"

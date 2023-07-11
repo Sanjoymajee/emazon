@@ -19,9 +19,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/icons8-sigma-color-16.png" />
-      </head>
       <body className={inter.className}>
         <NextTopLoader />
         <Navbar />
