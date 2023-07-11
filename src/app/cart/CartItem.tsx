@@ -10,7 +10,7 @@ interface CartItemProps {
 
 export default function CartItem({ item }: CartItemProps) {
   return (
-    <div className="group card max-w-40 bg-neutral shadow-xl">
+    <div className="group card card-compact md:card-normal md:card max-w-40 bg-neutral shadow-xl">
       <figure>
         <Image
           src={item.product.imageUrl}
@@ -18,7 +18,7 @@ export default function CartItem({ item }: CartItemProps) {
           width={500}
           height={500}
           className="max-h-44 w-full object-cover lg:group-hover:scale-125 transition-all duration-500 ease-in-out"
-        ></Image>
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{item.product.name}</h2>

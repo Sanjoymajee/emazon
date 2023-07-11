@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer";
+import SessionProvider from "@/app/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextTopLoader />
-        <Navbar />
-        <main className="m-auto min-w-[300px] max-w-7xl p-4">{children}</main>
-        <Footer />
+        <SessionProvider>
+          <NextTopLoader />
+          <Navbar />
+          <main className="m-auto min-w-[300px] max-w-7xl p-4">{children}</main>
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );

@@ -8,6 +8,9 @@ const nextConfig = {
       {
         hostname: "source.unsplash.com",
       },
+      {
+        hostname: "lh3.googleusercontent.com",
+      },
     ],
   },
 };

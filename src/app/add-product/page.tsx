@@ -68,7 +68,10 @@ export default function AddProduct() {
           name="image"
           id="image"
         />
-        <button className="btn btn-xs sm:btn-sm md:btn-md mt-2" type="submit">
+        <button
+          className="btn btn-primary btn-xs sm:btn-sm md:btn-md mt-2"
+          type="submit"
+        >
           Add Product
         </button>
       </form>

@@ -13,22 +13,21 @@ export const USDconversion = (price: number) => {
 export default function ProductCard({ product }: { product: Product }) {
   const bestSeller = false;
   return (
-    <div className="group min-w-[300px] card w-full bg-base-100 shadow-xl image-full">
+    <div className="card card-compact md:card-normal group min-w-[300px] w-full bg-neutral shadow-xl">
       <figure>
         <Image
           src={product.imageUrl}
           alt={product.name}
-          width={800}
-          height={400}
-          className="lg:group-hover:scale-150 transition-all duration-500 ease-in-out rounded-lg w-3/4"
+          width={500}
+          height={500}
+          className="max-h-64 w-full object-cover lg:group-hover:scale-125 transition-all duration-500 ease-in-out"
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title text-accent text-2xl">{product.name}</h2>
-        {bestSeller && <div className="badge badge-primary">Best Seller</div>}
+        <h2 className="card-title">{product.name}</h2>
         <p>{product.description}</p>
-        <div className="card-actions justify-between flex flex-col">
-          <div className="flex gap-5">
+        <div className="card-actions justify-between flex flex-col gap-3">
+          <div className="flex gap-3">
             <div className="badge badge-accent ">
               {USDconversion(product.price)}
             </div>
