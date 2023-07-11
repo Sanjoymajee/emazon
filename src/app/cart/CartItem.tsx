@@ -1,8 +1,9 @@
 import { USDconversion } from "@/components/ProductCard";
 import { CartItemWithProduct } from "@/lib/db/cart";
 import Image from "next/image";
-import { removeItemFromCart } from "./action";
-import RemoveFromCartButton from "./RemoveFromCartButton";
+import { increamentProductQuantity, decreamentProductQuantity } from "./action";
+import QuantityController from "./QuantityController";
+
 interface CartItemProps {
   item: CartItemWithProduct;
 }
@@ -16,7 +17,7 @@ export default function CartItem({ item }: CartItemProps) {
           alt={item.product.name}
           width={500}
           height={500}
-          className="max-h-44 w-full object-cover group-hover:scale-125 transition-all duration-500 ease-in-out"
+          className="max-h-44 w-full object-cover lg:group-hover:scale-125 transition-all duration-500 ease-in-out"
         ></Image>
       </figure>
       <div className="card-body">
@@ -30,9 +31,10 @@ export default function CartItem({ item }: CartItemProps) {
               {USDconversion(item.product.price * 1.2)}
             </div>
           </div>
-          <RemoveFromCartButton
-            itemId={item.id}
-            removeItemFromCart={removeItemFromCart}
+          <QuantityController
+            item={item}
+            increamentProductQuantity={increamentProductQuantity}
+            decreamentProductQuantity={decreamentProductQuantity}
           />
         </div>
       </div>

@@ -16,7 +16,7 @@ export default async function Cart() {
         {cart?.items.map((item) => <CartItems key={item.id} item={item} />)}
       </div>
 
-      <div className="bg-neutral p-5 mt-5 rounded-lg">
+      <div className="bg-neutral p-5 mt-5 rounded-2xl">
         {cart?.items.length ? (
           <>
             <h2 className="text-2xl font-bold mb-5 uppercase">Total</h2>

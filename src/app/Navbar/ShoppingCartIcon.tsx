@@ -34,7 +34,7 @@ export default function ShoppingCartIcon({ cart }: ShoppingCartIconProps) {
       </label>
       <div
         tabIndex={0}
-        className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
+        className="mt-3 z-30 card card-compact dropdown-content w-52 bg-base-100 shadow"
       >
         <div className="card-body bg-neutral rounded-xl">
           <span className="font-bold text-lg">{cart?.size || 0} Items</span>
