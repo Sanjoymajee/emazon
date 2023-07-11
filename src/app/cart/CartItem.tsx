@@ -1,6 +1,8 @@
 import { USDconversion } from "@/components/ProductCard";
 import { CartItemWithProduct } from "@/lib/db/cart";
 import Image from "next/image";
+import { removeItemFromCart } from "./action";
+import RemoveFromCartButton from "./RemoveFromCartButton";
 interface CartItemProps {
   item: CartItemWithProduct;
 }
@@ -28,7 +30,10 @@ export default function CartItem({ item }: CartItemProps) {
               {USDconversion(item.product.price * 1.2)}
             </div>
           </div>
-          <button className="btn btn-primary">Remove from Cart</button>
+          <RemoveFromCartButton
+            itemId={item.id}
+            removeItemFromCart={removeItemFromCart}
+          />
         </div>
       </div>
     </div>
