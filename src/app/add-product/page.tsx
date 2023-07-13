@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/db/prisma";
 import { redirect } from "next/navigation";
 import AddTag from "./AddTag";
+import InputField from "./InputField";
 
 async function addProduct(formData: FormData) {
   "use server";
@@ -31,59 +32,46 @@ export default function AddProduct() {
     <div className="rounded-none md:rounded-xl min-w-[300px] max-w-2xl flex flex-col bg-neutral p-8 mx-auto">
       <h1 className="text-3xl font-bold mb-4 text-gray-200">Add Product</h1>
       <form action={addProduct} className="flex flex-col">
-        <label className="text-gray-200 " htmlFor="name">
-          Name
-        </label>
-        <input
-          required
-          id="name"
+        <InputField
           name="name"
-          type="text"
+          className="input border-none input-bordered input-primary w-full max-w-2xl mb-2"
+          label="Name"
           placeholder="Name"
-          className="input border-none input-bordered input-primary w-full max-w-2xl mb-2"
-        />
-        <label htmlFor="price" className="text-gray-200">
-          Price
-        </label>
-        <input
-          required
-          placeholder="Price"
-          className="input border-none input-bordered input-primary w-full max-w-2xl mb-2"
+          required={true}
           type="text"
+        />
+        <InputField
           name="price"
-          id="price"
-        />
-        <label className="text-gray-200" htmlFor="description">
-          Description
-        </label>
-        <textarea
-          required
-          placeholder="Description"
-          className="textarea border-none textarea-primary mb-2"
-          name="description"
-          id="description"
-        ></textarea>
-        <label htmlFor="image" className="text-gray-200">
-          Image URL
-        </label>
-        <input
-          required
-          placeholder="Image URL"
           className="input border-none input-bordered input-primary w-full max-w-2xl mb-2"
-          type="url"
-          name="image"
-          id="image"
-        />
-        <label htmlFor="brand" className="text-gray-200">
-          Brand
-        </label>
-        <input
-          required
-          placeholder="Brand"
-          className="input border-none input-bordered input-primary w-full max-w-2xl mb-2"
+          label="Price"
+          placeholder="Price"
+          required={true}
           type="text"
+        />
+        <InputField
+          name="description"
+          className="textarea border-none textarea-primary mb-2"
+          label="Description"
+          placeholder="Description"
+          required={true}
+          type="text"
+          textarea={true}
+        />
+        <InputField
+          name="image"
+          className="input border-none input-bordered input-primary w-full max-w-2xl mb-2"
+          label="Image URL"
+          placeholder="Image URL"
+          required={true}
+          type="text"
+        />
+        <InputField
           name="brand"
-          id="brand"
+          className="input border-none input-bordered input-primary w-full max-w-2xl mb-2"
+          label="Brand"
+          placeholder="Brand"
+          required={true}
+          type="text"
         />
         <AddTag />
         <button className="btn btn-primary btn-sm md:btn-md mt-2" type="submit">

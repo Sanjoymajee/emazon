@@ -11,6 +11,7 @@ export default function AddTag() {
       "placeholder-tags",
     ) as HTMLInputElement;
     input.value = "";
+    input.focus();
   };
 
   const removeTag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -25,9 +26,22 @@ export default function AddTag() {
     input.value = tagArray.join(",");
   };
 
+  const checkTag = (newTag: string): boolean => {
+    const regex = /^[a-zA-Z0-9]+$/;
+    if (newTag.length < 1) return false;
+    if (!regex.test(newTag)) return false;
+    return !tags.some((t) => t.toLowerCase() === newTag.toLowerCase());
+  };
   const getUniqueTags = (newTagArray: string[]): string[] => {
-    const uniqueTags = newTagArray.filter((newTag) => {
-      return !tags.some((tag) => tag === newTag);
+    newTagArray.sort();
+    const newTags = newTagArray.map((newTag, index) => {
+      newTag.trim();
+      if (index < newTagArray.length - 1 && newTagArray[index + 1] === newTag)
+        return "";
+      else return newTag;
+    });
+    const uniqueTags = newTags.filter((newTag) => {
+      return checkTag(newTag);
     });
     return uniqueTags;
   };
@@ -35,8 +49,7 @@ export default function AddTag() {
   const addTag = () => {
     const newTagArray = tag.split(" ").join("").split(",");
     const uniqueTags = getUniqueTags(newTagArray);
-    console.log(uniqueTags);
-    if (uniqueTags[0] === "") return;
+    if (uniqueTags[0] === "") return clearPlaceholderInput();
     const updatedTags = [...tags, ...uniqueTags];
     setTags(updatedTags);
     setTag("");
@@ -70,7 +83,7 @@ export default function AddTag() {
         {tags.map((tag) => (
           <div
             key={tag}
-            className="badge m-1 badge-outline badge-primary gap-2 hover:cursor-pointer"
+            className="badge m-1 hover:badge-outline badge-info gap-2 hover:cursor-pointer"
             onClick={(e) => removeTag(e)}
           >
             <svg
