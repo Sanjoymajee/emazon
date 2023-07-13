@@ -1,7 +1,7 @@
 "use client";
 
 import { CartItemWithProduct } from "@/lib/db/cart";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 
 interface RemoveFromCartButtonProps {
   item: CartItemWithProduct;
@@ -15,16 +15,19 @@ export default function QuantityController({
   decreamentProductQuantity,
 }: RemoveFromCartButtonProps) {
   const [isPending, startTransition] = useTransition();
+  const [quantity, setQuantity] = useState(item.quantity);
 
   const increamentProductItem = () => {
     startTransition(async () => {
       await increamentProductQuantity(item.product.id);
+      setQuantity(quantity + 1);
     });
   };
 
   const decreamentProductItem = () => {
     startTransition(async () => {
       await decreamentProductQuantity(item.product.id);
+      setQuantity(quantity - 1);
     });
   };
   return (
@@ -33,7 +36,7 @@ export default function QuantityController({
         className="join-item btn text-xl"
         onClick={() => decreamentProductItem()}
       >
-        {item.quantity === 1 ? (
+        {quantity === 1 ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 30 30"
