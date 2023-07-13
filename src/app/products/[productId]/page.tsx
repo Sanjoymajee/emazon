@@ -72,6 +72,17 @@ export default async function ProductPage({
             increamentProductQuantity={increamentProductQuantity}
           />
         </div>
+        <div className="mt-4">
+          {product.tags.length > 0 &&
+            product.tags.map((tag) => (
+              <span
+                key={tag}
+                className="badge badge-primary badge-outline mr-2"
+              >
+                {tag}
+              </span>
+            ))}
+        </div>
       </div>
     </div>
   );

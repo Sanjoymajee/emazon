@@ -10,13 +10,13 @@ export const metadata = {
 export default async function Cart() {
   const cart = await getCart();
   return (
-    <div className="flex max-w-7xl mx-auto flex-col lg:p-5">
-      <h1 className="text-3xl font-bold mb-5">Your Cart</h1>
+    <div className="flex max-w-7xl mx-auto flex-col lg:p-4">
+      <h1 className="text-3xl font-bold mb-4">Your Cart</h1>
       <div className="gap-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {cart?.items.map((item) => <CartItems key={item.id} item={item} />)}
       </div>
 
-      <div className="bg-neutral p-4 md:p-8 mt-5 rounded-2xl">
+      <div className="bg-neutral p-4 md:p-8 mt-4 rounded-2xl">
         {cart?.items.length ? (
           <>
             <h2 className="text-2xl font-bold mb-5 uppercase">Total</h2>
