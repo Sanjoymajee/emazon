@@ -22,7 +22,7 @@ export default function Menu({ session, cart }: MenuProps) {
   };
   const user = session?.user;
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-w-max">
       <div className="navbar bg-neutral">
         <div className="flex-1 justify-start content-center">
           <Link
@@ -89,23 +89,35 @@ export default function Menu({ session, cart }: MenuProps) {
                 </span>
               </Link>
             </li>
-            <li>
-              {user ? (
-                <button
-                  className="btn btn-ghost capitalize ml-2 text-xl "
-                  onClick={() => signOut()}
-                >
-                  Log out
-                </button>
-              ) : (
+            {user ? (
+              <>
+                <li>
+                  <Link
+                    href={"/profile"}
+                    className="btn btn-ghost capitalize ml-2 text-xl "
+                  >
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    className="btn btn-ghost capitalize ml-2 text-xl "
+                    onClick={() => signOut()}
+                  >
+                    Log out
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li>
                 <button
                   className="btn btn-ghost capitalize ml-2 text-xl "
                   onClick={() => signIn()}
                 >
                   Log In
                 </button>
-              )}
-            </li>
+              </li>
+            )}
           </ul>
         </div>
       </div>
