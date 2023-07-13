@@ -72,13 +72,10 @@ export default async function ProductPage({
             increamentProductQuantity={increamentProductQuantity}
           />
         </div>
-        <div className="mt-4">
+        <div className="mt-2 flex flex-wrap gap-2">
           {product.tags.length > 0 &&
             product.tags.map((tag) => (
-              <span
-                key={tag}
-                className="badge badge-primary badge-outline mr-2"
-              >
+              <span key={tag} className="badge badge-primary badge-outline">
                 {tag}
               </span>
             ))}
