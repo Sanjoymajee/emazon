@@ -57,7 +57,9 @@ export default function Menu({ session, cart }: MenuProps) {
           <ProfileButton session={session} />
         </div>
       </div>
-      <div className={(show ? "block" : "hidden") + " " + "bg-neutral"}>
+      <div
+        className={(show ? "block" : "hidden") + " " + "bg-neutral md:hidden"}
+      >
         <div className="bg-neutral rounded-box w-52 flex flex-col">
           <ul className="menu items-start rounded-box w-full flex-start">
             <li>
