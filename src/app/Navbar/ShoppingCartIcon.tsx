@@ -10,7 +10,7 @@ interface ShoppingCartIconProps {
 
 export default function ShoppingCartIcon({ cart }: ShoppingCartIconProps) {
   return (
-    <div className="dropdown dropdown-end">
+    <div className="dropdown dropdown-end hidden md:block">
       <label tabIndex={0} className="btn btn-ghost btn-circle">
         <div className="indicator">
           <svg

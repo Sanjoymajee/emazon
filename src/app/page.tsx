@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <div className="min-w-[300px] max-w-7xl mx-auto bg-neutral p-4 rounded-xl lg:p-8 lg:rounded-2xl">
       <h1 className="text-2xl font-bold mb-4">Featured Products</h1>
-      <div className="bg-base-100 carousel carousel-center w-full p-4 space-x-4 rounded-box">
+      <div className="bg-base-100 carousel carousel-center w-full md:p-4 space-x-4 rounded-box">
         {featuredProducts.map((featuredProduct) => (
           <div
             key={featuredProduct.id}
