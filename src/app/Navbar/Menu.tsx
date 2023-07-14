@@ -30,10 +30,11 @@ export default function Menu({ session, cart }: MenuProps) {
             className="btn btn-ghost normal-case text-3xl pb-1 text-primary"
           >
             <Image
-              src={"/icons8-sigma-color-96.png"}
+              src={"/logo.svg"}
               alt="Emazon"
               width={50}
               height={50}
+              className="hover:rotate-180 transition duration-500 ease-in-out transform hover:rotate-360"
             />
           </Link>
           <div className="hidden md:block">
