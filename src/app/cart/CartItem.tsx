@@ -1,7 +1,7 @@
 import { USDconversion } from "@/components/ProductCard";
 import { CartItemWithProduct } from "@/lib/db/cart";
 import Image from "next/image";
-import { increamentProductQuantity, decreamentProductQuantity } from "./action";
+import { setProductQuantity } from "./action";
 import QuantityController from "./QuantityController";
 
 interface CartItemProps {
@@ -33,8 +33,7 @@ export default function CartItem({ item }: CartItemProps) {
           </div>
           <QuantityController
             item={item}
-            increamentProductQuantity={increamentProductQuantity}
-            decreamentProductQuantity={decreamentProductQuantity}
+            setProductQuantity={setProductQuantity}
           />
         </div>
       </div>

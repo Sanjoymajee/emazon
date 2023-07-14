@@ -5,36 +5,57 @@ import { useState, useTransition } from "react";
 
 interface RemoveFromCartButtonProps {
   item: CartItemWithProduct;
-  increamentProductQuantity: (productId: string) => Promise<void>;
-  decreamentProductQuantity: (productId: string) => Promise<void>;
+  setProductQuantity: (productId: string, quantity: number) => Promise<void>;
 }
 
 export default function QuantityController({
   item,
-  increamentProductQuantity,
-  decreamentProductQuantity,
+  setProductQuantity,
 }: RemoveFromCartButtonProps) {
   const [isPending, startTransition] = useTransition();
   const [quantity, setQuantity] = useState(item.quantity);
 
   const increamentProductItem = () => {
     startTransition(async () => {
-      await increamentProductQuantity(item.product.id);
+      await setProductQuantity(item.product.id, quantity + 1);
       setQuantity(quantity + 1);
     });
   };
 
   const decreamentProductItem = () => {
     startTransition(async () => {
-      await decreamentProductQuantity(item.product.id);
+      await setProductQuantity(item.product.id, quantity - 1);
       setQuantity(quantity - 1);
     });
+  };
+
+  const setProductQuanity = (
+    e: React.SyntheticEvent<HTMLSelectElement, Event>,
+  ) => {
+    const value = parseInt(e.currentTarget.value);
+    console.log(value);
+    startTransition(async () => {
+      await setProductQuantity(item.product.id, value);
+      setQuantity(value);
+    });
+  };
+  const optionElements = () => {
+    let options = [];
+    for (let i = 0; i <= 100; i++) {
+      options.push(
+        <option className="bg-neutral" value={i}>
+          {i}
+        </option>,
+      );
+    }
+    return options;
   };
   return (
     <div className="join">
       <button
         className="join-item btn text-xl"
         onClick={() => decreamentProductItem()}
+        disabled={isPending}
       >
         {quantity === 1 ? (
           <svg
@@ -54,11 +75,18 @@ export default function QuantityController({
       {isPending ? (
         <span className="loading loading-dots loading-md mx-2"></span>
       ) : (
-        <button className="join-item btn">{item.quantity}</button>
+        <select
+          onChange={(e) => setProductQuanity(e)}
+          value={quantity}
+          className="select select-bordered bg-neutral hover:bg-base-100 border-none join-item"
+        >
+          {optionElements().map((option) => option)}
+        </select>
       )}
       <button
         className="join-item btn text-xl"
         onClick={() => increamentProductItem()}
+        disabled={isPending}
       >
         +
       </button>
