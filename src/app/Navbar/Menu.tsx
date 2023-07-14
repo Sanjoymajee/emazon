@@ -34,7 +34,7 @@ export default function Menu({ session, cart }: MenuProps) {
               alt="Emazon"
               width={50}
               height={50}
-              className="hover:rotate-180 transition duration-500 ease-in-out transform hover:rotate-360"
+              className="md:hover:rotate-180 transition duration-500 ease-in-out transform hover:rotate-360"
             />
           </Link>
           <div className="hidden md:block">

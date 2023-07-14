@@ -21,7 +21,7 @@ export default function InputField({
 }: InputFieldProps) {
   return (
     <>
-      <label className="text-gray-200 " htmlFor="name">
+      <label className="text-current " htmlFor="name">
         {label}
       </label>
       {textarea ? (
