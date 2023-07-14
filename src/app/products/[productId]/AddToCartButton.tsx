@@ -23,7 +23,11 @@ export default function AddToCartButton({
 
   return (
     <div className="flex items-center gap-2">
-      <button className="btn btn-primary" onClick={() => AddToCart()}>
+      <button
+        disabled={isPending}
+        className="btn btn-primary "
+        onClick={() => AddToCart()}
+      >
         {isPending ? (
           <span className="loading loading-spinner loading-md"></span>
         ) : (
