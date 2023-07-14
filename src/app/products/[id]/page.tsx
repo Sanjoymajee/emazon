@@ -7,6 +7,7 @@ import { cache } from "react";
 import { Metadata } from "next";
 import AddToCartButton from "./AddToCartButton";
 import { increamentProductQuantity } from "./action";
+import ImageItem from "./ImageItem";
 interface ProductPageProps {
   params: {
     id: string;
@@ -46,15 +47,7 @@ export default async function ProductPage({
   const product: Product = await getProduct(id);
   return (
     <div className="card min-w-[300px] m-0 rounded-xl lg:card-side bg-neutral shadow-xl max-w-5xl lg:mx-auto lg:my-5">
-      <figure className="lg:w-1/2 max-h-[600px]">
-        <Image
-          className="lg:hover:scale-125 transition-all duration-500 ease-in-out"
-          src={product.imageUrl}
-          alt={product.name}
-          width={500}
-          height={200}
-        />
-      </figure>
+      <ImageItem product={product} />
       <div className="card-body lg:w-1/2">
         <h2 className="card-title">{product.name}</h2>
         <p>{product.description}</p>
