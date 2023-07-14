@@ -9,14 +9,14 @@ import AddToCartButton from "./AddToCartButton";
 import { increamentProductQuantity } from "./action";
 interface ProductPageProps {
   params: {
-    productId: string;
+    id: string;
   };
 }
 
 export async function generateMetadata({
-  params: { productId },
+  params: { id },
 }: ProductPageProps): Promise<Metadata> {
-  const product: Product = await getProduct(productId);
+  const product: Product = await getProduct(id);
   return {
     title: product.name + " - Emazon",
     description: product.description,
@@ -41,9 +41,9 @@ const getProduct = cache(async (productId: string) => {
 });
 
 export default async function ProductPage({
-  params: { productId },
+  params: { id },
 }: ProductPageProps) {
-  const product: Product = await getProduct(productId);
+  const product: Product = await getProduct(id);
   return (
     <div className="card min-w-[300px] m-0 rounded-xl lg:card-side bg-neutral shadow-xl max-w-5xl lg:mx-auto lg:my-5">
       <figure className="lg:w-1/2 max-h-[600px]">
